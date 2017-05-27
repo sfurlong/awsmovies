@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+  <script src="awsmovies-controller.js"></script>
+
+  <style>
+    .logTextArea {
+      width: 600px;
+      height: 500px;
+      border: 3px solid #cccccc;
+      padding: 5px;
+      font-family: Tahoma, sans-serif;
+    }
+
+    .body {
+      margin: 20px;
+    }
+    .googlemap {
+      width: 1200px;
+      height: 500px;
+      border: 3px solid #cccccc;
+      padding: 5px;
+      font-family: Tahoma, sans-serif;
+    } 
+  </style>
+
+
+</head>
+
+<body>
+
+    <div ng-app="AWSMoviesApp">
+      <div ng-controller="HelloUserController">
+        <input ng-model="name" ng-keyup="NameChange()">
+        <p>{{greeting}}</p>
+        <p>{{name}}</p>
+
+        <label>Search Term(s):
+          <input type="text" ng-model="searchTermParam" ng-init="searchTermParam = 'term value'" />
+        </label>
+
+
+        <table>
+        <tr>
+        <td>
+        <b>Movie Summaries</b><br>
+        <textarea class="logTextArea">{{MovieSearchResults}}</textarea>
+        </td>
+        <td>
+        <b>Raw Movie Data</b><br>
+        <textarea class="logTextArea">{{MovieSearchRawResults}}</textarea>
+        </td>
+        </tr>
+        </table>
+
+        <button ng-click="SearchMovies()">Search</button>
+
+      </div>
+
+
+
+    </div>
+
+</body>
+
+</html>
