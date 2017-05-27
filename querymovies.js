@@ -6,8 +6,6 @@ module.exports = {
     search: function(searchTerm, callback) {
         var AWS = require("aws-sdk");
 
-        ret = "";
-
         //need to update region in config
         AWS.config.update({
             region: "us-east-1"
@@ -34,13 +32,8 @@ module.exports = {
             } else {
                 console.log("Query succeeded.");
                 data.Items.forEach(function(item) {
-                    ret = ret + " -" + item.year + ": " + item.title + "<br>";
-                    //ret = ret + item;
                     //console.log(" -", item.year + ": " + item.title);
                 });
-//                console.log(ret);
-//                return callback(ret);
-                //console.log(JSON.stringify(data, null, 4));
                 return callback(JSON.stringify(data, null, 4));
             }
         });

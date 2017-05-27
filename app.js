@@ -10,7 +10,7 @@ var users = require('./routes/users');
 
 var app = express();
 
-var mlapp = require("./querymovies.js");
+var dbQuery = require("./querymovies.js");
 
 var ret = "Search Results are....";
 
@@ -34,7 +34,7 @@ app.use('/users', users);
 // SEARCH for movies!
 app.get('/search/', function(req, res) {
 
-//DEBUG:  Print out all the query key/value pairs
+  //DEBUG:  Print out all the query key/value pairs
   for (var propName in req.query) {
     if (req.query.hasOwnProperty(propName)) {
       console.log(propName, req.query[propName]);
@@ -42,7 +42,7 @@ app.get('/search/', function(req, res) {
   }
 
   console.log('Searching for movies.' + req.query.year);
-  mlapp.search(parseInt(req.query.year), function(queryDat) {
+  dbQuery.search(parseInt(req.query.year), function(queryDat) {
   	 res.send(queryDat);
   });
 });
