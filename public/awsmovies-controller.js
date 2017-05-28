@@ -19,7 +19,7 @@ angular.module('AWSMoviesApp', [])
        	  console.log($scope.searchTermParam);
 			  	//REST GET Call to the Node.JS server which will in turn call
 		      //the MarkLogic database javascript api.
-		      $http.get("http://localhost:3000/search", config)
+		      $http.get("/search", config)
 		        .success(function(data, status, headers, config) {
 		          	// The $http service automatically converts the response to a
 		          	// JavaScript object whenever it sees that it looks 
