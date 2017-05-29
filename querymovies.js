@@ -1,6 +1,6 @@
 var ret = "";
 
-module.exports = { 
+module.exports = {
 
 
     search: function(searchTerm, callback) {
@@ -13,22 +13,23 @@ module.exports = {
 
         var docClient = new AWS.DynamoDB.DocumentClient();
 
-        console.log("Querying for movies from ." + searchTerm);
+        console.log("!!!Querying for movies from ." + searchTerm);
 
         var params = {
-            TableName : "Movies",
+            TableName: "Movies",
             KeyConditionExpression: "#yr = :yyyy",
-            ExpressionAttributeNames:{
+            ExpressionAttributeNames: {
                 "#yr": "year"
             },
             ExpressionAttributeValues: {
-                ":yyyy":searchTerm
+                ":yyyy": searchTerm
             }
         };
 
         docClient.query(params, function(err, data) {
             if (err) {
                 console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+                return callback(JSON.stringify(err, null, 4));
             } else {
                 console.log("Query succeeded.");
                 data.Items.forEach(function(item) {
@@ -41,6 +42,6 @@ module.exports = {
     },
 
     err: function(error) {
-      console.log("ERROR");
+        console.log("ERROR");
     }
 };

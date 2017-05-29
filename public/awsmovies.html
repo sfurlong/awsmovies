@@ -2,30 +2,38 @@
 <html>
 
 <head>
+    <!-- The following three lines are for bootstrap UI framework -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
-  <script src="awsmovies-controller.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+    <script src="awsmovies-controller.js"></script>
 
-  <style>
-    .logTextArea {
-      width: 600px;
-      height: 500px;
-      border: 3px solid #cccccc;
-      padding: 5px;
-      font-family: Tahoma, sans-serif;
-    }
-
-    .body {
-      margin: 20px;
-    }
-    .googlemap {
-      width: 1200px;
-      height: 500px;
-      border: 3px solid #cccccc;
-      padding: 5px;
-      font-family: Tahoma, sans-serif;
-    } 
-  </style>
+    <style>
+        .logTextArea {
+            width: 600px;
+            height: 500px;
+            border: 3px solid #cccccc;
+            padding: 5px;
+            font-family: Tahoma, sans-serif;
+        }
+        
+        .body {
+            margin: 20px;
+        }
+        
+        .googlemap {
+            width: 1200px;
+            height: 500px;
+            border: 3px solid #cccccc;
+            padding: 5px;
+            font-family: Tahoma, sans-serif;
+        }
+    </style>
 
 
 </head>
@@ -33,35 +41,28 @@
 <body>
 
     <div ng-app="AWSMoviesApp">
-      <div ng-controller="HelloUserController">
-        <input ng-model="name" ng-keyup="NameChange()">
-        <p>{{greeting}}</p>
-        <p>{{name}}</p>
+        <div ng-controller="HelloUserController">
 
-        <label>Search Term(s):
-          <input type="text" ng-model="searchTermParam" />
-        </label>
+            <label>Search Term(s):
+              <input type="text" ng-model="searchTermParam" />
+            </label>
 
+            <button ng-click="SearchMovies()">Search</button>
 
-        <table>
-        <tr>
-        <td>
-        <b>Movie Summaries</b><br>
-        <textarea class="logTextArea">{{MovieSearchResults}}</textarea>
-        </td>
-        <td>
-        <b>Raw Movie Data</b><br>
-        <textarea class="logTextArea">{{MovieSearchRawResults}}</textarea>
-        </td>
-        </tr>
-        </table>
+            <table>
+                <tr>
+                    <td>
+                        <b>Movie Summaries</b><br>
+                        <textarea class="logTextArea">{{MovieSearchResults}}</textarea>
+                    </td>
+                    <td>
+                        <b>Raw Movie Data</b><br>
+                        <textarea class="logTextArea">{{MovieSearchRawResults}}</textarea>
+                    </td>
+                </tr>
+            </table>
 
-        <button ng-click="SearchMovies()">Search</button>
-
-      </div>
-
-
-
+        </div>
     </div>
 
 </body>
