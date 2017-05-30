@@ -1,5 +1,3 @@
-var ret = "";
-
 module.exports = {
 
 
