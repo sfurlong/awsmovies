@@ -22,7 +22,7 @@ angular.module('AWSMoviesApp', [])
                     $scope.MovieSearchRawResults = "";
                     data.Items.forEach(function(item) {
                         $scope.MovieSearchResults += " -" + item.year + ": " + item.title + "\n";
-                        $scope.MovieSearchRawResults += JSON.stringify(item, null, 4) + "\n\n";
+                        $scope.MovieSearchRawResults += JSON.stringify(item, null, 4) + "\n-------\n";
                         //console.log(" -", item.year + ": " + item.title);
                     });
 
