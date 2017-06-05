@@ -11,6 +11,7 @@ var users = require('./routes/users');
 var app = express();
 
 var dbQuery = require("./querymovies.js");
+var dbLoad = require("./loadtweets.js");
 
 var ret = "Search Results are....";
 
@@ -34,36 +35,45 @@ app.use('/users', users);
 // SEARCH for movies!
 app.get('/search/', function(req, res) {
 
-  //DEBUG:  Print out all the query key/value pairs
-  for (var propName in req.query) {
-    if (req.query.hasOwnProperty(propName)) {
-      console.log(propName, req.query[propName]);
+    //DEBUG:  Print out all the query key/value pairs
+    for (var propName in req.query) {
+        if (req.query.hasOwnProperty(propName)) {
+            console.log(propName, req.query[propName]);
+        }
     }
-  }
 
-  console.log('Searching for movies.' + req.query.year);
-  dbQuery.search(parseInt(req.query.year), function(queryDat) {
-  	 res.send(queryDat);
-  });
+    console.log('Searching for movies.' + req.query.year);
+    dbQuery.search(parseInt(req.query.year), function(queryDat) {
+        res.send(queryDat);
+    });
 });
 
+// LOAD Movies to DB from JSON files
+app.get('/load/', function(req, res) {
+
+    console.log('READY TO LOAD MOVIES from: ' + req.query.dir);
+
+    dbLoad.loadTweets(req.query.dir, function(queryDat) {
+
+    });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;

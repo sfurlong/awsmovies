@@ -9,7 +9,7 @@ module.exports = {
             region: "us-east-1"
         });
 
-        var docClient = new AWS.DynamoDB.DocumentClient();
+        var dynamoDB = new AWS.DynamoDB.DocumentClient();
 
         console.log("!!!Querying for movies from ." + searchTerm);
 
@@ -24,7 +24,7 @@ module.exports = {
             }
         };
 
-        docClient.query(params, function(err, data) {
+        dynamoDB.query(params, function(err, data) {
             if (err) {
                 console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
                 return callback(JSON.stringify(err, null, 4));

@@ -1,5 +1,5 @@
 angular.module('AWSMoviesApp', [])
-    .controller('HelloUserController', function($scope, $http) {
+    .controller('AWSMoviesController', function($scope, $http) {
 
         $scope.SearchMovies = function() {
             var params = {
@@ -32,6 +32,34 @@ angular.module('AWSMoviesApp', [])
                 $scope.movies = logResult("GET ERROR", data, status, headers, config);
             });
 
+        };
+
+        $scope.LoadMovies = function() {
+
+            var params = {
+                dir: "D:/DEV/aneml-master/aneml-master/setup/tweet-data"
+            };
+
+            var config = {
+                params: params
+            };
+            var destDoc, sourceDoc, sourceFolder, newLayer;
+
+            console.log("Loading the movies BRO!");
+
+            $http.get("/load", config)
+                .success(function(data, status, headers, config) {
+                    // The $http service automatically converts the response to a
+                    // JavaScript object whenever it sees that it looks 
+                    // like a JSON string.
+                    //console.log(" -", item.year + ": " + item.title);
+
+                })
+
+            .error(function(data, status, headers, config) {
+                $scope.movies = "ERROR";
+                //$scope.movies = logResult("GET ERROR", data, status, headers, config);
+            });
         };
 
     }); //end
